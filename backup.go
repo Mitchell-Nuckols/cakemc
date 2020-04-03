@@ -27,7 +27,7 @@ func backup(server *Server, opts BackupOptions) {
 		select {
 		case <-t.C:
 			{
-				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Starting backup of server...","color":"dark_aqua"}]`)
+				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Starting backup of server...","color":"purple"}]`)
 				err := prune(opts)
 				if err != nil {
 					log.Println("Prune failed: ", err)
@@ -42,7 +42,8 @@ func backup(server *Server, opts BackupOptions) {
 					return
 				}
 				server.Write("save-on")
-				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Saved!","color":"green","hoverEvent":{"action":"show_text", "value":["` + name + `"]}}]`)
+				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Backup completed!","color":"purple","hoverEvent":{"action":"show_text", "value":["` + name + `"]}}]`)
+				log.Println("Backed up", opts.WorldDir, ":", name)
 			}
 
 		}

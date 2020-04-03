@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 	"syscall"
 )
 
@@ -65,6 +66,14 @@ func (s *Server) Write(input string) {
 	s.stdIn <- input
 }
 
+func (s *Server) StdoutPipe() (io.ReadCloser, error) {
+	return s.cmd.StdoutPipe()
+}
+
+func (s *Server) StderrPipe() (io.ReadCloser, error) {
+	return s.cmd.StderrPipe()
+}
+
 func (s *Server) handleIn() error {
 	stdIn, err := s.cmd.StdinPipe()
 	if err != nil {
@@ -76,6 +85,7 @@ func (s *Server) handleIn() error {
 
 		for {
 			in := <-s.stdIn
+			in = strings.TrimSuffix(in, "\n")
 			io.WriteString(stdIn, in+"\r\n")
 		}
 	}()
