@@ -6,6 +6,6 @@
     "xms": "1G",
     "backupDir": "server/backup",
     "worldName": "world",
-    "backupInterval": 45,
+    "backupInterval": 1,
     "pruneAge": 180
 }

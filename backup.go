@@ -27,22 +27,22 @@ func backup(server *Server, opts BackupOptions) {
 		select {
 		case <-t.C:
 			{
-				server.Write("tellraw @p [\"\",{\"text\":\"Starting backup of server...\",\"color\":\"dark_aqua\"}]")
+				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Starting backup of server...","color":"dark_aqua"}]`)
 				err := prune(opts)
 				if err != nil {
 					log.Println("Prune failed: ", err)
-					server.Write(`tellraw @p ["",{"text":"Error saving! Check logs for details.","color":"red", "bold":true}]`)
+					server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Error saving! Check logs for details.","color":"red", "bold":true}]`)
 					return
 				}
 				server.Write("save-off")
 				name, err := archive(opts)
 				if err != nil {
 					log.Println("Archive failed: ", err)
-					server.Write(`tellraw @p ["",{"text":"Error saving! Check logs for details.","color":"red", "bold":true}]`)
+					server.Write(`tellraw @p ["§f[§6CakeMC§f] ""§f[§6CakeMC§f] ",{"text":"Error saving! Check logs for details.","color":"red", "bold":true}]`)
 					return
 				}
 				server.Write("save-on")
-				server.Write(`tellraw @p ["",{"text":"Saved!","color":"green","hoverEvent":{"action":"show_text", "value":["` + name + `"]}}]`)
+				server.Write(`tellraw @p ["§f[§6CakeMC§f] ",{"text":"Saved!","color":"green","hoverEvent":{"action":"show_text", "value":["` + name + `"]}}]`)
 			}
 
 		}
