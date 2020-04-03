@@ -25,7 +25,7 @@ func init() {
 func main() {
 
 	opts := ServerOptions{
-		MaxRam:    config.Xms,
+		MaxRam:    config.Xmx,
 		MinRam:    config.Xms,
 		Dir:       config.ServerDir,
 		Jar:       config.Jarfile,
