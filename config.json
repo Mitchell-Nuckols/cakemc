@@ -1,0 +1,11 @@
+{
+    "autoRecover": true,
+    "serverDir": "server",
+    "jarfile": "server.jar",
+    "xmx": "2G",
+    "xms": "1G",
+    "backupDir": "server/backup",
+    "worldName": "world",
+    "backupInterval": 45,
+    "pruneAge": 180
+}
