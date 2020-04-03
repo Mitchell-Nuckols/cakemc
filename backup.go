@@ -34,6 +34,7 @@ func backup(server *Server, opts BackupOptions) {
 					server.Write(`tellraw @a ["§f[§6CakeMC§f] ",{"text":"Error saving! Check logs for details.","color":"red", "bold":true}]`)
 					return
 				}
+				server.Write("save-all")
 				server.Write("save-off")
 				name, err := archive(opts)
 				if err != nil {

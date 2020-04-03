@@ -12,7 +12,7 @@ var config Config
 
 func init() {
 	if len(os.Args) < 2 {
-		log.Fatalln("Must specify a config file: mc-wrapper config.json")
+		log.Fatalln("Must specify a config file: 'cakemc config.json'")
 	}
 
 	var err error
